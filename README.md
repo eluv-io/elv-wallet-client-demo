@@ -1,70 +1,16 @@
-# Getting Started with Create React App
+# Eluvio Wallet Client Demo
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a simple demo created using create-react-app to demonstrate a sample flow for initializing the Eluvio wallet client, logging in, and retrieving user data.
 
-## Available Scripts
+Run using `npm start`.
 
-In the project directory, you can run:
+For the login flow, there are two options:
+  - Show the wallet frame 
+  - Create a popup to go through the login flow (saving auth info to localstorage), then reload the frame to pick up the auth info. 
 
-### `npm start`
+These flows are demonstrated in the `SampleWithFrame` and `SampleWithPopup` in `App.js`. You can set the export at the bottom to change the flow the sample uses. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+#### Notes:
+- The `EluvioWalletFrame` component MUST be rendered for the lifetime of the client. The client operates by sending messages to and receiving messages from this frame. If the frame is closed, the wallet client will not work. You can use event listeners, as demonstrated in this sample, to determine whether the app is loaded and whether the user is logged in. Any time the frame is re-initialized, you should wait for a `LOADED` event.
+- The popup login flow **will not work** in environments that block cross origin frames from accessing LocalStorage (this includes Chrome incognito windows)
+- This sample is written assuming only the client API is desired (and so only the login flow must be shown), so the client initialization calls include the `loginOnly` param. If you want to show the Eluvio wallet app UI at any point, but still require the user log in, use the `requireLogin` parameter instead.
