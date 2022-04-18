@@ -40,6 +40,7 @@ const EluvioWalletFrame = ({visible, client, SetClient}) => {
           .then(client => {
             SetClient(client)
 
+            // If previously used client is present, ensure it is destroyed
             if(previousClient) {
               previousClient.Destroy();
             }
