@@ -12,6 +12,8 @@ This is a simple demo created using create-react-app to demonstrate a sample flo
 
 ### Login Flow
 
+See `src/App.js` and `src/EluvioWalletFrame.js` for sample code.
+
 For the login flow, there are two options:
   - Show the wallet frame 
   - Create a popup to go through the login flow (saving auth info to localstorage), then reload the frame to pick up the auth info.
