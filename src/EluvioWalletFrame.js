@@ -5,9 +5,7 @@ export const PopupLogin = async () => {
   const popupClient = await ElvWalletClient.InitializePopup({
     walletAppUrl: "https://wallet.contentfabric.io",
     requestor: "WWE Moonsault",
-    loginOnly: true,
-    // NOTE: This should be changed to tenant slug + marketplace slug when the marketplace is published
-    marketplaceId: "iq__2zMYXQ6SwRFhjAc73ppcn4RP5KX3"
+    loginOnly: true
   })
 
   await new Promise((resolve, reject) => {
@@ -33,9 +31,7 @@ const EluvioWalletFrame = ({visible, client, SetClient}) => {
           walletAppUrl: "https://wallet.contentfabric.io",
           target: element,
           requestor: "WWE Moonsault",
-          loginOnly: true,
-          // NOTE: This should be changed to tenant slug + marketplace slug when the marketplace is published
-          marketplaceId: "iq__2zMYXQ6SwRFhjAc73ppcn4RP5KX3"
+          loginOnly: true
         })
           .then(client => {
             SetClient(client)
